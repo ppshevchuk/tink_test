@@ -7,7 +7,7 @@ Before((I) => {
     //Before тут использовать сомнительно, просто для пробы возможностей инструмента
 });
 
-// Для чернового работающего варианта делаем все в одном сценарии
+
 Scenario('test something @tink', async (I) => {
     // 2 пункт. Из меню в футере, нажатием на пункт меню “Платежи“, перейти на страницу “Платежи“.
     I.seeElement('footer[class^="footer"]');
@@ -24,7 +24,7 @@ Scenario('test something @tink', async (I) => {
     var regionCurrent = null;
     var regionMoscow = 'Москве';
     regionCurrent = await I.grabTextFrom('span[data-qa-file="PaymentsCatalogHeader"] span');
-    console.log(regionMoscow.localeCompare(regionCurrent));
+
     if (regionMoscow.localeCompare(regionCurrent)) {
         await I.clickLink('span[data-qa-file="PaymentsCatalogHeader"] span');
         await I.waitForElement('div[data-qa-file="UIPopupRegionsAsync"]',30);
@@ -36,7 +36,6 @@ Scenario('test something @tink', async (I) => {
     // Сохранить его наименование (далее “искомый”) и нажатием на соответствующий элемент перейти на страницу оплаты “ЖКУ-Москва“.
     await I.waitForElement('ul[data-qa-file="UIScrollList"] li:first-child',30);
     var target = await I.grabTextFrom('ul[data-qa-file="UIScrollList"] li:first-child');
-    console.log(target);
     I.wait(1);
     //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -139,7 +138,6 @@ Scenario('test something @tink', async (I) => {
     await I.fillField('//div[@data-qa-file="FormFieldSearchAndPay"]/div/div/label/div/input',target);
     await I.click('//div[@data-qa-file="FormFieldSearchAndPay"]/div/div/label/div/input');
     I.wait(1);
-    I.saveScreenshot('suggest.png', true);
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     // 10 пункт. Убедиться, что в списке предложенных провайдеров искомый поставщик первый.
